@@ -7,12 +7,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Place extends Activity implements AdapterView.OnItemClickListener {
 	TextView titlePlace;
@@ -56,8 +53,8 @@ public class Place extends Activity implements AdapterView.OnItemClickListener {
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
 		title = listPlace.getItemAtPosition(position).toString();
-		image = title.toLowerCase().replace(" ", "") + ".jpg";
-		web = title.toLowerCase().replace(" ", "") + ".html";
+		image = title.toLowerCase().replace(" ", "");
+		web = title.toLowerCase().replace(" ", "");
 		createContent();
 	}
 
