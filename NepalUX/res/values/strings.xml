@@ -3,5 +3,8 @@
 
     <string name="hello">Hello World, NepalUXActivity!</string>
     <string name="app_name">NepalUX</string>
+    <string name="titlePlace">Places to See</string>
+    <string name="titleFood">Food to Eat</string>
+    <string name="titleCulture">Culture to See</string>
 
 </resources>

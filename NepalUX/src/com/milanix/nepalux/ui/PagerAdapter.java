@@ -1,4 +1,4 @@
-package com.milanix.nepalux;
+package com.milanix.nepalux.ui;
 
 import java.util.List;
 

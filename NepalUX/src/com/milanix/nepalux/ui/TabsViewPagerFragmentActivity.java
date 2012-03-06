@@ -1,9 +1,10 @@
-package com.milanix.nepalux;
+package com.milanix.nepalux.ui;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
+import com.milanix.nepalux.R;
 import com.milanix.nepalux.tabui.Explore;
 import com.milanix.nepalux.tabui.Info;
 import com.milanix.nepalux.tabui.Namaste;
@@ -32,14 +33,9 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 
 	private class TabInfo {
 		private String tag;
-		private Class<?> clss;
-		private Bundle args;
-		private Fragment fragment;
 
 		TabInfo(String tag, Class<?> clazz, Bundle args) {
 			this.tag = tag;
-			this.clss = clazz;
-			this.args = args;
 		}
 
 	}
