@@ -14,11 +14,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class Explore extends Fragment implements View.OnClickListener {
-	ImageView imagePlace;
-	ImageView imageFood;
-	ImageView imageCulture;
-	View info;
-	Intent contentType;
+	private ImageView imagePlace;
+	private ImageView imageFood;
+	private ImageView imageCulture;
+	private View info;
+	private Intent contentType;
 
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {

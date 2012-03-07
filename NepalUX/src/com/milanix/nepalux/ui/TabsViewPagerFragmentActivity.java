@@ -5,11 +5,14 @@ import java.util.List;
 import java.util.Vector;
 
 import com.milanix.nepalux.R;
+import com.milanix.nepalux.menu.AboutUs;
 import com.milanix.nepalux.tabui.Explore;
 import com.milanix.nepalux.tabui.Info;
 import com.milanix.nepalux.tabui.Namaste;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -25,6 +28,8 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 
 	private static final int SHARE_ID = Menu.FIRST;
 	private static final int ABOUT_ID = Menu.FIRST + 1;
+	
+	private final String appName="com.google.android.googlequicksearchbox";
 
 	private TabHost mTabHost;
 	private ViewPager mViewPager;
@@ -119,6 +124,9 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 				(tabInfo = new TabInfo("Explore", Explore.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
 
+		for (int i = 0; i <= 2; i++)
+			mTabHost.getTabWidget().getChildAt(i).getLayoutParams().height = 55;
+
 		mTabHost.setOnTabChangedListener(this);
 	}
 
@@ -158,11 +166,19 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
 
-		/*
-		 * switch (item.getItemId()) { case ABOUT_ID: { Intent intent = new
-		 * Intent(NepalUXActivity.this, About.class); startActivity(intent);
-		 * return true; } case SHARE_ID: { return true; } }
-		 */
+		switch (item.getItemId()) {
+		case ABOUT_ID: {
+			Intent intent = new Intent(TabsViewPagerFragmentActivity.this, AboutUs.class);
+			startActivity(intent);
+			return true;
+		}
+		case SHARE_ID: {
+			Intent intent = new Intent(Intent.ACTION_VIEW);
+			intent.setData(Uri.parse("market://details?id="+appName));
+			startActivity(intent);
+			return true;
+		}
+		}
 
 		return super.onMenuItemSelected(featureId, item);
 	}

@@ -12,14 +12,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class Place extends Activity implements AdapterView.OnItemClickListener {
-	TextView titlePlace;
-	ListView listPlace;
+	private TextView titlePlace;
+	private ListView listPlace;
 
-	String title;
-	String image;
-	String web;
+	private String title;
+	private String image;
+	private String web;
 
-	ArrayAdapter<String> adapter;
+	private ArrayAdapter<String> adapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
