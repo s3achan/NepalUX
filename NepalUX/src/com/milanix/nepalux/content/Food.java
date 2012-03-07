@@ -35,8 +35,8 @@ public class Food extends Activity implements AdapterView.OnItemClickListener {
 	}
 
 	private void createList() {
-		String[] places = new String[] { "Chicken Bhutua", "Chiken Chilli", "Chicken Masala",
-				"Chicken Tarkari", "Babari Ko Achaar" };
+		String[] places = new String[] { "Chicken Bhutua", "Chiken Chilli",
+				"Chicken Masala", "Chicken Tarkari", "Babari Ko Achaar" };
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, places);
 		listFood.setAdapter(adapter);
@@ -44,9 +44,11 @@ public class Food extends Activity implements AdapterView.OnItemClickListener {
 
 	private void createContent() {
 		Intent i = new Intent(Food.this, Content.class);
+		i.putExtra("content", "food");
 		i.putExtra("title", title);
 		i.putExtra("image", image);
 		i.putExtra("web", web);
+
 		startActivity(i);
 	}
 

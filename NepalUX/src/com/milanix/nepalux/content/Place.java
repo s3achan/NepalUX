@@ -36,7 +36,7 @@ public class Place extends Activity implements AdapterView.OnItemClickListener {
 
 	private void createList() {
 		String[] places = new String[] { "Namche Bazzar", "Pokhara", "Jomson",
-				"Muktinath", "Annapurna Circuit" };
+				"Muktinath", "Annapurna" };
 		adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, android.R.id.text1, places);
 		listPlace.setAdapter(adapter);
@@ -44,6 +44,7 @@ public class Place extends Activity implements AdapterView.OnItemClickListener {
 
 	private void createContent() {
 		Intent i = new Intent(Place.this, Content.class);
+		i.putExtra("content", "place");
 		i.putExtra("title", title);
 		i.putExtra("image", image);
 		i.putExtra("web", web);

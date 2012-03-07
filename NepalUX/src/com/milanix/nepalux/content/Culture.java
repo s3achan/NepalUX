@@ -44,6 +44,7 @@ public class Culture extends Activity implements AdapterView.OnItemClickListener
 
 	private void createContent() {
 		Intent i = new Intent(Culture.this, Content.class);
+		i.putExtra("content", "culture");
 		i.putExtra("title", title);
 		i.putExtra("image", image);
 		i.putExtra("web", web);
