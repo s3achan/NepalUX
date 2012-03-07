@@ -28,8 +28,7 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 
 	private static final int SHARE_ID = Menu.FIRST;
 	private static final int ABOUT_ID = Menu.FIRST + 1;
-	
-	private final String appName="com.google.android.googlequicksearchbox";
+	private final String appName = "com.google.android.googlequicksearchbox";
 
 	private TabHost mTabHost;
 	private ViewPager mViewPager;
