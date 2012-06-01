@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.ICSLight" parent="android:Theme.Light"></style>
+    <style name="Theme.ICSLight" parent="android:Theme.DeviceDefault.Light"></style>
+    <style name="Theme.ICSLight.NoActionBar" parent="android:Theme.DeviceDefault.Light.NoActionBar"></style>
+
+    <declare-styleable name="HelloGallery">
+        <attr name="android:galleryItemBackground" />
+    </declare-styleable>
 
 </resources>

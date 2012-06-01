@@ -15,23 +15,19 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/titleContent"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Medium Text"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
             <ImageView
                 android:id="@+id/imageContent"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
+                android:layout_margin="5dp"
+                android:scaleType="centerCrop"
                 android:src="@drawable/unavailable" />
 
             <WebView
                 android:id="@+id/webContent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp" />
         </LinearLayout>
     </ScrollView>
 

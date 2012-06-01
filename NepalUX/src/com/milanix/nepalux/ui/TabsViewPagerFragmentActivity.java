@@ -4,31 +4,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
 
-import com.milanix.nepalux.R;
-import com.milanix.nepalux.menu.AboutUs;
-import com.milanix.nepalux.tabui.Explore;
-import com.milanix.nepalux.tabui.Info;
-import com.milanix.nepalux.tabui.Namaste;
-
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ShareActionProvider;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
+
+import com.milanix.nepalux.R;
+import com.milanix.nepalux.info.AboutUs;
+import com.milanix.nepalux.search.SearchableDictionary;
+import com.milanix.nepalux.tabui.Explore;
+import com.milanix.nepalux.tabui.Info;
+import com.milanix.nepalux.tabui.Namaste;
+
+/**
+ * * TabsViewPagerFragmentActivity.java contains code related to tab activity.
+ * 
+ * NepalUX
+ * 
+ * @author Milan Rajbhandari
+ * @version 1.0
+ */
 
 public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 		TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener {
 
-	private static final int SHARE_ID = Menu.FIRST;
+	ShareActionProvider mShareActionProvider;
+	private static final int HELP_ID = Menu.FIRST;
 	private static final int ABOUT_ID = Menu.FIRST + 1;
-	private final String appName = "com.google.android.googlequicksearchbox";
 
 	private TabHost mTabHost;
 	private ViewPager mViewPager;
@@ -41,7 +52,6 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 		TabInfo(String tag, Class<?> clazz, Bundle args) {
 			this.tag = tag;
 		}
-
 	}
 
 	class TabFactory implements TabContentFactory {
@@ -58,7 +68,6 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 			v.setMinimumHeight(0);
 			return v;
 		}
-
 	}
 
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,15 +75,17 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 		setContentView(R.layout.tabs_viewpager_layout);
 
 		this.initialiseTabHost(savedInstanceState);
+		this.intialiseViewPager();
+
 		if (savedInstanceState != null) {
 			mTabHost.setCurrentTabByTag(savedInstanceState.getString("tab"));
 		}
-		this.intialiseViewPager();
+
 	}
 
 	protected void onSaveInstanceState(Bundle outState) {
-		outState.putString("tab", mTabHost.getCurrentTabTag());
 		super.onSaveInstanceState(outState);
+		outState.putString("tab", mTabHost.getCurrentTabTag());
 	}
 
 	@Override
@@ -98,9 +109,10 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 		fragments.add(Fragment.instantiate(this, Namaste.class.getName()));
 		fragments.add(Fragment.instantiate(this, Info.class.getName()));
 		fragments.add(Fragment.instantiate(this, Explore.class.getName()));
+
 		this.mPagerAdapter = new PagerAdapter(
 				super.getSupportFragmentManager(), fragments);
-		//
+
 		this.mViewPager = (ViewPager) super.findViewById(R.id.viewpager);
 		this.mViewPager.setAdapter(this.mPagerAdapter);
 		this.mViewPager.setOnPageChangeListener(this);
@@ -110,14 +122,17 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 		mTabHost = (TabHost) findViewById(android.R.id.tabhost);
 		mTabHost.setup();
 		TabInfo tabInfo = null;
+
 		TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost
 				.newTabSpec("namaste").setIndicator("Namaste"),
 				(tabInfo = new TabInfo("Namaste", Namaste.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
+
 		TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost
 				.newTabSpec("info").setIndicator("Info"),
 				(tabInfo = new TabInfo("Info", Info.class, args)));
 		this.mapTabInfo.put(tabInfo.tag, tabInfo);
+
 		TabsViewPagerFragmentActivity.AddTab(this, this.mTabHost, this.mTabHost
 				.newTabSpec("xplore").setIndicator("Xplore"),
 				(tabInfo = new TabInfo("Explore", Explore.class, args)));
@@ -136,50 +151,58 @@ public class TabsViewPagerFragmentActivity extends FragmentActivity implements
 	}
 
 	public void onTabChanged(String tag) {
-
 		int pos = this.mTabHost.getCurrentTab();
 		this.mViewPager.setCurrentItem(pos);
 	}
 
 	public void onPageScrollStateChanged(int arg0) {
-
 	}
 
 	public void onPageScrolled(int arg0, float arg1, int arg2) {
-
 	}
 
 	public void onPageSelected(int position) {
 		this.mTabHost.setCurrentTab(position);
-
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(0, SHARE_ID, 0, "Share");
+
+		super.onCreateOptionsMenu(menu);
+		menu.add(0, HELP_ID, 0, "Help");
 		menu.add(0, ABOUT_ID, 0, "About");
-		return result;
+
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.layout.mainmenu, menu);
+
+		mShareActionProvider = (ShareActionProvider) menu.findItem(
+				R.id.menu_share).getActionProvider();
+		Intent shareIntent = new Intent(Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+		mShareActionProvider.setShareIntent(shareIntent);
+
+		return true;
 	}
 
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item) {
-
 		switch (item.getItemId()) {
 		case ABOUT_ID: {
-			Intent intent = new Intent(TabsViewPagerFragmentActivity.this, AboutUs.class);
+			Intent intent = new Intent(TabsViewPagerFragmentActivity.this,
+					AboutUs.class);
 			startActivity(intent);
 			return true;
 		}
-		case SHARE_ID: {
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(Uri.parse("market://details?id="+appName));
+		case HELP_ID: {
+			return true;
+		}
+		case R.id.menu_search: {
+			Intent intent = new Intent(TabsViewPagerFragmentActivity.this,
+					SearchableDictionary.class);
 			startActivity(intent);
 			return true;
 		}
 		}
-
 		return super.onMenuItemSelected(featureId, item);
 	}
-
 }

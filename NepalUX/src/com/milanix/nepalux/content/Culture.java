@@ -1,29 +1,36 @@
 package com.milanix.nepalux.content;
 
-import com.milanix.nepalux.R;
-import com.milanix.nepalux.menu.AboutUs;
-import com.milanix.nepalux.ui.TabsViewPagerFragmentActivity;
-
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
+import com.milanix.nepalux.R;
+import com.milanix.nepalux.info.AboutUs;
+import com.milanix.nepalux.search.SearchableDictionary;
+
+/**
+ * * Culture.java contains a list related to culture. This class is deprecated
+ * and will be removed.
+ * 
+ * NepalUX
+ * 
+ * @author Milan Rajbhandari
+ * @version 1.0
+ */
 
 public class Culture extends Activity implements
 		AdapterView.OnItemClickListener {
 
-	private static final int SHARE_ID = Menu.FIRST;
+	private static final int HELP_ID = Menu.FIRST;
 	private static final int ABOUT_ID = Menu.FIRST + 1;
-	private final String appName = "com.google.android.googlequicksearchbox";
 
-	private TextView titleCulture;
 	private ListView listCulture;
 
 	private String title;
@@ -37,11 +44,13 @@ public class Culture extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.culture);
 
-		titleCulture = (TextView) findViewById(R.id.titleCulture);
 		listCulture = (ListView) findViewById(R.id.listCulture);
 
 		createList();
 		listCulture.setOnItemClickListener(this);
+
+		ActionBar actionBar = getActionBar();
+		actionBar.setTitle("Cultures to experience");
 
 	}
 
@@ -72,10 +81,16 @@ public class Culture extends Activity implements
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(0, SHARE_ID, 0, "Share");
+
+		super.onCreateOptionsMenu(menu);
+		menu.add(0, HELP_ID, 0, "Help");
 		menu.add(0, ABOUT_ID, 0, "About");
-		return result;
+
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.layout.mainmenu, menu);
+
+		return true;
+
 	}
 
 	@Override
@@ -83,17 +98,19 @@ public class Culture extends Activity implements
 
 		switch (item.getItemId()) {
 		case ABOUT_ID: {
-			Intent intent = new Intent(Culture.this,
-					AboutUs.class);
+			Intent intent = new Intent(this, AboutUs.class);
 			startActivity(intent);
 			return true;
 		}
-		case SHARE_ID: {
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(Uri.parse("market://details?id=" + appName));
+		case HELP_ID: {
+			return true;
+		}
+		case R.id.menu_search: {
+			Intent intent = new Intent(Culture.this, SearchableDictionary.class);
 			startActivity(intent);
 			return true;
 		}
+
 		}
 
 		return super.onMenuItemSelected(featureId, item);

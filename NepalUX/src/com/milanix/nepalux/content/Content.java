@@ -2,33 +2,43 @@ package com.milanix.nepalux.content;
 
 import java.lang.reflect.Field;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.ShareActionProvider;
+
 import com.milanix.nepalux.R;
 import com.milanix.nepalux.R.drawable;
-import com.milanix.nepalux.menu.AboutUs;
+import com.milanix.nepalux.info.AboutUs;
+import com.milanix.nepalux.search.SearchableDictionary;
+
+/**
+ * * Content.java contains a dynamic content creation code.
+ * 
+ * NepalUX
+ * 
+ * @author Milan Rajbhandari
+ * @version 1.0
+ */
 
 public class Content extends Activity implements View.OnClickListener {
 
-	private static final int SHARE_ID = Menu.FIRST;
+	ShareActionProvider mShareActionProvider;
+
+	private static final int HELP_ID = Menu.FIRST;
 	private static final int ABOUT_ID = Menu.FIRST + 1;
-	private final String appName = "com.google.android.googlequicksearchbox";
 
 	private WebView webContent;
-	private TextView titleContent;
 	private ImageView imageContent;
 
 	private String title;
@@ -45,7 +55,6 @@ public class Content extends Activity implements View.OnClickListener {
 
 		Bundle extras = getIntent().getExtras();
 
-		titleContent = (TextView) findViewById(R.id.titleContent);
 		imageContent = (ImageView) findViewById(R.id.imageContent);
 		webContent = (WebView) findViewById(R.id.webContent);
 
@@ -54,15 +63,16 @@ public class Content extends Activity implements View.OnClickListener {
 		image = extras.getString("image");
 		web = extras.getString("web") + ".html";
 
-		titleContent.setText(title);
-		titleContent.setGravity(Gravity.CENTER);
-		titleContent.setTypeface(null, Typeface.BOLD);
+		System.out.println(content);
 
 		if (content.equals("place"))
 			imageContent.setOnClickListener(this);
 
 		getId();
 		imageContent.setImageResource(drawablePlaceId);
+
+		ActionBar actionBar = getActionBar();
+		actionBar.setTitle(title);
 
 		loadContent();
 	}
@@ -86,7 +96,7 @@ public class Content extends Activity implements View.OnClickListener {
 			Field field = res.getField(image);
 			drawablePlaceId = field.getInt(null);
 		} catch (Exception e) {
-			Log.e("ResID", "Failure to get drawable id.");
+			drawablePlaceId = R.drawable.unavailable;
 		}
 	}
 
@@ -103,10 +113,23 @@ public class Content extends Activity implements View.OnClickListener {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		boolean result = super.onCreateOptionsMenu(menu);
-		menu.add(0, SHARE_ID, 0, "Share");
+
+		super.onCreateOptionsMenu(menu);
+		menu.add(0, HELP_ID, 0, "Help");
 		menu.add(0, ABOUT_ID, 0, "About");
-		return result;
+
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.layout.mainmenu, menu);
+
+		mShareActionProvider = (ShareActionProvider) menu.findItem(
+				R.id.menu_share).getActionProvider();
+
+		Intent shareIntent = new Intent(Intent.ACTION_SEND);
+		shareIntent.setType("text/plain");
+
+		mShareActionProvider.setShareIntent(shareIntent);
+		return true;
+
 	}
 
 	@Override
@@ -118,14 +141,16 @@ public class Content extends Activity implements View.OnClickListener {
 			startActivity(intent);
 			return true;
 		}
-		case SHARE_ID: {
-			Intent intent = new Intent(Intent.ACTION_VIEW);
-			intent.setData(Uri.parse("market://details?id=" + appName));
+		case HELP_ID: {
+			return true;
+		}
+		case R.id.menu_search: {
+			Intent intent = new Intent(Content.this, SearchableDictionary.class);
 			startActivity(intent);
+
 			return true;
 		}
 		}
-
 		return super.onMenuItemSelected(featureId, item);
 	}
 

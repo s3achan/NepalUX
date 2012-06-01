@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, NepalUXActivity!</string>
     <string name="app_name">NepalUX</string>
     <string name="titlePlace">Places to See</string>
     <string name="titleFood">Food to Eat</string>
     <string name="titleCulture">Culture to See</string>
+    <string name="search_nepalux">Search NepalUX Content</string>
+    <string name="actionA">ActionA</string>
+    <string name="search_label">Content</string>
+    <string name="search_hint">Search things of interest</string>
+    <string name="menu_search">Search</string>
+    <string name="settings_description">Things of interest</string>
+    <string name="search_instructions">Use the search box in the Action Bar to look up a things of your interest</string>
+
+    <plurals name="search_results">
+        <item quantity="one">%1$d result for \"%2$s\": </item>
+        <item quantity="other">%1$d results for \"%2$s\": </item>
+    </plurals>
+
+    <string name="no_results">No results found for \"%s\"</string>
 
 </resources>

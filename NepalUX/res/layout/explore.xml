@@ -1,37 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" >
-    <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical" >
+    android:layout_margin="5dp" >
 
+    <!-- Views width in this layout must be calculated based on device -->
+
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
         <ImageView
             android:id="@+id/imagePlace"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/place" />
+
+        <TextView
+            android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/place" />
+            android:layout_alignLeft="@+id/imagePlace"
+            android:layout_alignRight="@+id/imagePlace"
+            android:layout_below="@+id/imagePlace"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Places"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#33B5E5"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageFood"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/food" />
+            android:layout_width="154dp"
+            android:layout_height="84dp"
+            android:layout_below="@+id/textView1"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/culture" />
 
         <ImageView
             android:id="@+id/imageCulture"
+            android:layout_width="150dp"
+            android:layout_height="84dp"
+            android:layout_below="@+id/textView1"
+            android:layout_margin="5dp"
+            android:layout_toRightOf="@+id/imageFood"
+            android:scaleType="centerCrop"
+            android:src="@drawable/food" />
+
+        <TextView
+            android:id="@+id/TextView01"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/culture" />
+            android:layout_alignLeft="@+id/imageFood"
+            android:layout_below="@+id/imageFood"
+            android:layout_toLeftOf="@+id/imageCulture"
+            android:gravity="center"
+            android:text="Culture"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#33B5E5"
+            android:textStyle="bold" />
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/imageCulture"
+            android:layout_below="@+id/imageFood"
+            android:layout_toRightOf="@+id/TextView01"
+            android:gravity="center"
+            android:text="Food"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#33B5E5"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="168dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/TextView01"
+            android:layout_margin="5dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gallery" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/imagePlace"
+            android:layout_alignRight="@+id/imagePlace"
+            android:layout_below="@+id/imagePlace"
+            android:layout_margin="5dp"
+            android:gravity="center"
+            android:text="Places"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#33B5E5"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/textView1"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/imageView1"
+            android:layout_margin="5dp"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="Gallery"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="#33B5E5"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
 </ScrollView>
-
-</LinearLayout>
