@@ -1,0 +1,35 @@
+<com.milanix.dashboard.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    android:background="#f8f9fe" >
+    <Button
+        android:id="@+id/btn_food"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_food"
+        android:text="@string/food" />
+    
+    
+    <Button
+        android:id="@+id/btn_culture"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_culture"
+        android:text="@string/culture" />
+    
+	<!--  Messages Button -->
+    <Button
+        android:id="@+id/btn_places"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_places"
+        android:text="@string/places" />
+	
+    <!--  Places Button -->
+    <Button
+        android:id="@+id/btn_gallery"
+        style="@style/DashboardButton"
+        android:drawableTop="@drawable/btn_gallery"
+        android:text="@string/gallery" />
+
+
+</com.milanix.dashboard.DashboardLayout>

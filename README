@@ -8,7 +8,3 @@
  * @version 2.0 Alpha (Development base for community developer
  */
 
-$ git add README
-$ git status
-# On branch master
-$ git commit -a
