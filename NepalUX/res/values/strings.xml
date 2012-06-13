@@ -19,5 +19,9 @@
     </plurals>
 
     <string name="no_results">No results found for \"%s\"</string>
+    <string name="food">Food</string>
+    <string name="culture">Culture</string>
+    <string name="places">Places</string>
+    <string name="gallery">Gallery</string>
 
 </resources>

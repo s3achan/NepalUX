@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/search"
+        android:showAsAction="always"
+        android:title="Search"/>
+
+    <item
+        android:id="@+id/menu_share"
+        android:actionProviderClass="android.widget.ShareActionProvider"
+        android:showAsAction="always"
+        android:title="Share">
+    </item>
+
+    <!--
+    <item
+        android:id="@+id/menuContent"
+        android:icon="@drawable/content"
+        android:showAsAction="always">
+
+        <menu>
+
+            <group android:id="@+id/menu_nav_group" >
+
+                <item
+                    android:id="@+id/places_menu"
+                    android:title="Places"/>
+
+                <item
+                    android:id="@+id/foods_menu"
+                    android:title="Foods"/>
+
+                <item
+                    android:id="@+id/culture_menu"
+                    android:title="Menu"/>
+            </group>
+        </menu>
+    </item>
+    -->
+
+</menu>
